@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Source;
 use Illuminate\Http\Request;
 
 class SourceController extends Controller
@@ -29,7 +30,7 @@ class SourceController extends Controller
      */
     public function show(string $id)
     {
-        $source = \App\Models\Source::with('articles')->findOrFail($id);
+        $source = Source::with('articles')->findOrFail($id);
         return response()->json($source);
     }
 
