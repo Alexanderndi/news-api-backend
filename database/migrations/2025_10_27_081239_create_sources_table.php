@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('sources', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('api_id')->nullable()->unique();
+            $table->string('url')->nullable();
+            $table->string('logo_url')->nullable();
             $table->timestamps();
         });
     }

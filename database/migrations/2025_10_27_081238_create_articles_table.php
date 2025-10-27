@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->longText('content')->nullable();
+            $table->string('url')->unique();
+            $table->string('image_url')->nullable();
+            $table->timestamp('published_at')->nullable();
+            $table->foreignId('source_id')->constrained('sources')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
+            $table->foreignId('author_id')->nullable()->constrained('authors')->onDelete('set null');
             $table->timestamps();
         });
     }
