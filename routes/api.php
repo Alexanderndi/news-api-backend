@@ -13,3 +13,7 @@ Route::apiResource('authors', AuthorController::class);
 
 // Custom endpoints for article search/filter
 Route::get('articles/search', [ArticleController::class, 'search']);
+
+use App\Http\Controllers\Api\UserPreferenceController;
+Route::get('user-preferences/{user}', [UserPreferenceController::class, 'show']);
+Route::put('user-preferences/{user}', [UserPreferenceController::class, 'update']);
