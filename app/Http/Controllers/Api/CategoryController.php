@@ -10,9 +10,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories = \App\Models\Category::withCount('articles')->get();
+        return response()->json($categories);
     }
 
     /**
@@ -28,7 +29,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = \App\Models\Category::with('articles')->findOrFail($id);
+        return response()->json($category);
     }
 
     /**

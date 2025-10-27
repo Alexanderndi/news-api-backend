@@ -10,9 +10,10 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $authors = \App\Models\Author::withCount('articles')->get();
+        return response()->json($authors);
     }
 
     /**
@@ -28,7 +29,8 @@ class AuthorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $author = \App\Models\Author::with('articles')->findOrFail($id);
+        return response()->json($author);
     }
 
     /**

@@ -10,9 +10,10 @@ class SourceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $sources = \App\Models\Source::withCount('articles')->get();
+        return response()->json($sources);
     }
 
     /**
@@ -28,7 +29,8 @@ class SourceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $source = \App\Models\Source::with('articles')->findOrFail($id);
+        return response()->json($source);
     }
 
     /**
