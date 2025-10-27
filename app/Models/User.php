@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -11,6 +12,11 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    public function userPreference()
+    {
+        return $this->hasOne(UserPreference::class);
+    }
 
     /**
      * The attributes that are mass assignable.
